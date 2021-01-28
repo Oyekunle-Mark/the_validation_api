@@ -46,22 +46,6 @@ export const createResponse = (
   // eslint-disable-next-line @typescript-eslint/ban-types
   data: object | null = null
 ): Response => {
-  // let responseObject: Record<string, unknown>
-
-  // if (responseStatus === ResponseStatus.success) {
-  //   responseObject = {
-  //     message,
-  //     status: responseStatus,
-  //     data,
-  //   }
-  // } else {
-  //   responseObject = {
-  //     message,
-  //     status: responseStatus,
-  //     data: null,
-  //   }
-  // }
-
   const responseObject = {
     message,
     status: responseStatus,
