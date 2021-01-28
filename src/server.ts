@@ -5,21 +5,12 @@ const server = express()
 
 server.use(express.json({ limit: '124kb' }))
 
-server.get('/api', (_, res: Response) =>
+server.get('/', (_, res: Response) =>
   createResponse(
     res,
     HttpStatus.StatusOk,
     ResponseType.Success,
     'Server is up!'
-  )
-)
-
-server.use((_, res: Response) =>
-  createResponse(
-    res,
-    HttpStatus.StatusNotFound,
-    ResponseType.Failure,
-    'Not Found.'
   )
 )
 
