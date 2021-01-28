@@ -18,7 +18,9 @@ export enum ResponseStatus {
 interface IResponseMessage {
   GetDetails: string
   RuleRequired: string
+  DataRequired: string
   RuleShouldBeObject: string
+  DataCannotBeNumber: string
   InvalidJsonPayload: string
   InvalidConditionValue: string
 }
@@ -26,7 +28,9 @@ interface IResponseMessage {
 export const ResponseMessage: IResponseMessage = {
   GetDetails: 'The Rule-Validation API',
   RuleRequired: 'rule is required.',
+  DataRequired: 'data is required.',
   RuleShouldBeObject: 'rule should be an object.',
+  DataCannotBeNumber: 'data should be an object, array or string.',
   InvalidJsonPayload: 'Invalid JSON payload passed.',
   InvalidConditionValue:
     'rule.condition should be one of eq, neq, gt, gte, or contains.',
