@@ -49,7 +49,7 @@ export const validateDataField = (
       )
     }
 
-    resultantTargetFieldValue = data
+    resultantTargetFieldValue = data[field]
   } else {
     const levels = field.split('.')
 

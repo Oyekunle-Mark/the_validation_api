@@ -5,3 +5,11 @@ export const ValidConditions = new Set<string>([
   'gte',
   'contains',
 ])
+
+export enum ConditionType {
+  eq = 'eq',
+  neq = 'neq',
+  gt = 'gt',
+  gte = 'gte',
+  contains = 'contains',
+}
