@@ -16,7 +16,11 @@ export enum ResponseStatus {
 }
 
 interface IResponseMessage {
-  GetDetails: 'The Rule-Validation API'
+  GetDetails: string
+}
+
+export const ResponseMessage: IResponseMessage = {
+  GetDetails: 'The Rule-Validation API',
 }
 
 /**
@@ -34,7 +38,7 @@ export const createResponse = (
   message: string,
   responseStatus: ResponseStatus,
   // eslint-disable-next-line @typescript-eslint/ban-types
-  data: object | string
+  data: object | null
 ): Response => {
   let responseObject: Record<string, unknown>
 
