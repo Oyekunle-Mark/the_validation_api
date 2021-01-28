@@ -6,6 +6,7 @@ import {
   HttpStatusCode,
   ResponseMessage,
   ResponseStatus,
+  ValidConditions,
 } from '../../common'
 
 export const validateRuleField = (
@@ -49,6 +50,15 @@ export const validateRuleField = (
       res,
       HttpStatusCode.StatusBadRequest,
       createMissingFromMessage(FieldNames.condition, FieldNames.rule),
+      ResponseStatus.error
+    )
+  }
+
+  if (!ValidConditions.has(condition)) {
+    return createResponse(
+      res,
+      HttpStatusCode.StatusBadRequest,
+      ResponseMessage.InvalidConditionValue,
       ResponseStatus.error
     )
   }

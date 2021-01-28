@@ -20,6 +20,7 @@ interface IResponseMessage {
   RuleRequired: string
   RuleShouldBeObject: string
   InvalidJsonPayload: string
+  InvalidConditionValue: string
 }
 
 export const ResponseMessage: IResponseMessage = {
@@ -27,6 +28,8 @@ export const ResponseMessage: IResponseMessage = {
   RuleRequired: 'rule is required.',
   RuleShouldBeObject: 'rule should be an object.',
   InvalidJsonPayload: 'Invalid JSON payload passed.',
+  InvalidConditionValue:
+    'rule.condition should be one of eq, neq, gt, gte, or contains.',
 }
 
 /**
