@@ -17,10 +17,16 @@ export enum ResponseStatus {
 
 interface IResponseMessage {
   GetDetails: string
+  RuleRequired: string
+  RuleShouldBeObject: string
+  InvalidJsonPayload: string
 }
 
 export const ResponseMessage: IResponseMessage = {
   GetDetails: 'The Rule-Validation API',
+  RuleRequired: 'rule is required.',
+  RuleShouldBeObject: 'rule should be an object.',
+  InvalidJsonPayload: 'Invalid JSON payload passed.',
 }
 
 /**
@@ -38,22 +44,28 @@ export const createResponse = (
   message: string,
   responseStatus: ResponseStatus,
   // eslint-disable-next-line @typescript-eslint/ban-types
-  data: object | null
+  data: object | null = null
 ): Response => {
-  let responseObject: Record<string, unknown>
+  // let responseObject: Record<string, unknown>
 
-  if (responseStatus === ResponseStatus.success) {
-    responseObject = {
-      message,
-      status: responseStatus,
-      data,
-    }
-  } else {
-    responseObject = {
-      message,
-      status: responseStatus,
-      data: null,
-    }
+  // if (responseStatus === ResponseStatus.success) {
+  //   responseObject = {
+  //     message,
+  //     status: responseStatus,
+  //     data,
+  //   }
+  // } else {
+  //   responseObject = {
+  //     message,
+  //     status: responseStatus,
+  //     data: null,
+  //   }
+  // }
+
+  const responseObject = {
+    message,
+    status: responseStatus,
+    data,
   }
 
   return res.status(httpStatusCode).json(responseObject)
