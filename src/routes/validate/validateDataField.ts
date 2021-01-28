@@ -20,6 +20,7 @@ export const validateDataField = (
     rule: { field },
   } = req.body
 
+  // data field must be provided
   if (data === undefined) {
     return createResponse(
       res,
@@ -29,6 +30,7 @@ export const validateDataField = (
     )
   }
 
+  // data cannot be a number
   if (typeof data === number_t) {
     return createResponse(
       res,
@@ -41,6 +43,7 @@ export const validateDataField = (
   // eslint-disable-next-line @typescript-eslint/ban-types
   let resultantTargetFieldValue: object
 
+  // if data is an array or a string
   if (data.length !== undefined || typeof data === string_t) {
     if (field >= data.length) {
       return createResponse(
@@ -52,9 +55,10 @@ export const validateDataField = (
     }
 
     resultantTargetFieldValue = data[field]
-  } else {
+  } else { // otherwise, data is an object
     const levels = field.split('.')
 
+    // do not support nesting greater that two levels
     if (levels.length > 2) {
       return createResponse(
         res,
@@ -64,9 +68,10 @@ export const validateDataField = (
       )
     }
 
+    // if target field is two levels deep
     if (levels.length === 2) {
       const [level1, level2] = levels
-      const nestedObject = data[level1]
+      const nestedObject = data[level1] // extract first level
 
       if (nestedObject === undefined) {
         return createResponse(
@@ -77,7 +82,7 @@ export const validateDataField = (
         )
       }
 
-      const dataFieldValue = nestedObject[level2]
+      const dataFieldValue = nestedObject[level2] // extract second level
 
       if (dataFieldValue === undefined) {
         return createResponse(
@@ -89,9 +94,9 @@ export const validateDataField = (
       }
 
       resultantTargetFieldValue = dataFieldValue
-    } else {
+    } else { // one level object
       const [targetField] = levels
-      const dataFieldValue = data[targetField]
+      const dataFieldValue = data[targetField] // extract field value
 
       if (dataFieldValue === undefined) {
         return createResponse(
@@ -108,7 +113,7 @@ export const validateDataField = (
 
   // eslint-disable-next-line @typescript-eslint/ban-ts-comment
   // @ts-ignore
-  req.targetFieldValue = resultantTargetFieldValue
+  req.targetFieldValue = resultantTargetFieldValue // add the target field to request body. to be used in the controller
 
   next()
 }

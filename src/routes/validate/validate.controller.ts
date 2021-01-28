@@ -17,6 +17,7 @@ export const validateController = (req: Request, res: Response): Response => {
 
   let isValid: boolean
 
+  // evaluate field condition condition_value
   switch (condition) {
     case ConditionType.eq:
       isValid = targetFieldValue == condition_value
@@ -40,10 +41,13 @@ export const validateController = (req: Request, res: Response): Response => {
   const message = isValid
     ? `field ${field} successfully validated.`
     : `field ${field} failed validation.`
+
   const httpStatus = isValid
     ? HttpStatusCode.StatusOk
     : HttpStatusCode.StatusBadRequest
+
   const responseStatus = isValid ? ResponseStatus.success : ResponseStatus.error
+
   const validation: IValidationResult = {
     error: !isValid,
     field,

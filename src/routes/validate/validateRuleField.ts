@@ -17,6 +17,7 @@ export const validateRuleField = (
 ): Response | void => {
   const { rule } = req.body
 
+  // rule field must be present
   if (rule === undefined) {
     return createResponse(
       res,
@@ -26,6 +27,7 @@ export const validateRuleField = (
     )
   }
 
+  // rule field cannot be an array or a number
   if (typeof rule !== object_t || rule.length !== undefined) {
     return createResponse(
       res,
@@ -37,6 +39,7 @@ export const validateRuleField = (
 
   const { field, condition, condition_value } = rule
 
+  // rule.field must be provided
   if (field === undefined) {
     return createResponse(
       res,
@@ -46,6 +49,7 @@ export const validateRuleField = (
     )
   }
 
+  // rule.condition must be provided
   if (condition === undefined) {
     return createResponse(
       res,
@@ -55,6 +59,7 @@ export const validateRuleField = (
     )
   }
 
+  // rule.condition must be valid
   if (!ValidConditions.has(condition)) {
     return createResponse(
       res,
@@ -64,6 +69,7 @@ export const validateRuleField = (
     )
   }
 
+  // rule.condition_value must be provided
   if (condition_value === undefined) {
     return createResponse(
       res,
