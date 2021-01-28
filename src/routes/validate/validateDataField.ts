@@ -39,7 +39,7 @@ export const validateDataField = (
   // eslint-disable-next-line @typescript-eslint/ban-types
   let resultantTargetFieldValue: object
 
-  if (data.length !== 'undefined' || typeof data === 'string') {
+  if (data.length !== undefined || typeof data === 'string') {
     if (field >= data.length) {
       return createResponse(
         res,
@@ -57,7 +57,7 @@ export const validateDataField = (
       const [level1, level2] = levels
       const nestedObject = data[level1]
 
-      if (nestedObject === 'undefined') {
+      if (nestedObject === undefined) {
         return createResponse(
           res,
           HttpStatusCode.StatusBadRequest,
@@ -68,7 +68,7 @@ export const validateDataField = (
 
       const dataFieldValue = nestedObject[level2]
 
-      if (dataFieldValue === 'undefined') {
+      if (dataFieldValue === undefined) {
         return createResponse(
           res,
           HttpStatusCode.StatusBadRequest,
@@ -82,7 +82,7 @@ export const validateDataField = (
       const [targetField] = levels
       const dataFieldValue = data[targetField]
 
-      if (dataFieldValue === 'undefined') {
+      if (dataFieldValue === undefined) {
         return createResponse(
           res,
           HttpStatusCode.StatusBadRequest,

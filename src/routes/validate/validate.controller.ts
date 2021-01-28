@@ -45,7 +45,7 @@ export const validateController = (req: Request, res: Response): Response => {
     : HttpStatusCode.StatusBadRequest
   const responseStatus = isValid ? ResponseStatus.success : ResponseStatus.error
   const validation: IValidationResult = {
-    error: isValid,
+    error: !isValid,
     field,
     field_value: targetFieldValue,
     condition,
