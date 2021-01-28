@@ -1,5 +1,5 @@
 import express from 'express'
-import { baseRoute } from './routes'
+import { baseRoute, validateRuleRoute } from './routes'
 import {
   createResponse,
   HttpStatusCode,
@@ -25,5 +25,6 @@ server.use((req, res, next) => {
 })
 
 server.use('/', baseRoute)
+server.use('/validate-rule', validateRuleRoute)
 
 export default server
