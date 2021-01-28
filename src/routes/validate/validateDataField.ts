@@ -6,6 +6,8 @@ import {
   HttpStatusCode,
   ResponseMessage,
   ResponseStatus,
+  string_t,
+  number_t,
 } from '../../common'
 
 export const validateDataField = (
@@ -27,7 +29,7 @@ export const validateDataField = (
     )
   }
 
-  if (typeof data === 'number') {
+  if (typeof data === number_t) {
     return createResponse(
       res,
       HttpStatusCode.StatusBadRequest,
@@ -39,7 +41,7 @@ export const validateDataField = (
   // eslint-disable-next-line @typescript-eslint/ban-types
   let resultantTargetFieldValue: object
 
-  if (data.length !== undefined || typeof data === 'string') {
+  if (data.length !== undefined || typeof data === string_t) {
     if (field >= data.length) {
       return createResponse(
         res,
@@ -53,7 +55,16 @@ export const validateDataField = (
   } else {
     const levels = field.split('.')
 
-    if (levels.length > 1) {
+    if (levels.length > 2) {
+      return createResponse(
+        res,
+        HttpStatusCode.StatusBadRequest,
+        createMissingFromMessage(field, FieldNames.data),
+        ResponseStatus.error
+      )
+    }
+
+    if (levels.length === 2) {
       const [level1, level2] = levels
       const nestedObject = data[level1]
 

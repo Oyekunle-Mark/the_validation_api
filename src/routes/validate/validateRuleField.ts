@@ -7,6 +7,7 @@ import {
   ResponseMessage,
   ResponseStatus,
   ValidConditions,
+  object_t,
 } from '../../common'
 
 export const validateRuleField = (
@@ -25,7 +26,7 @@ export const validateRuleField = (
     )
   }
 
-  if (typeof rule !== 'object' || rule.length !== undefined) {
+  if (typeof rule !== object_t || rule.length !== undefined) {
     return createResponse(
       res,
       HttpStatusCode.StatusBadRequest,
