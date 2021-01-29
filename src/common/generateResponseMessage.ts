@@ -7,3 +7,6 @@ export const createMissingFromMessage = (
 
 export const createNestingTooDeepMessage = (field: string): string =>
   `field ${field} is more than two levels deep.`
+
+export const createFieldShouldBeAStringMessage = (field: string): string =>
+  `${field} should be a string.`

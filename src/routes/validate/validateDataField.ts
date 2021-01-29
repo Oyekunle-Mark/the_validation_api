@@ -9,6 +9,7 @@ import {
   string_t,
   number_t,
   createNestingTooDeepMessage,
+  createFieldShouldBeAStringMessage,
 } from '../../common'
 
 export const validateDataField = (
@@ -57,6 +58,16 @@ export const validateDataField = (
 
     resultantTargetFieldValue = data[field]
   } else { // otherwise, data is an object
+    // ensure field is not a number before split
+    if (typeof field === number_t) {
+      return createResponse(
+        res,
+        HttpStatusCode.StatusBadRequest,
+        createFieldShouldBeAStringMessage('rule.field'),
+        ResponseStatus.error
+      )
+    }
+
     const levels = field.split('.')
 
     // do not support nesting greater that two levels
