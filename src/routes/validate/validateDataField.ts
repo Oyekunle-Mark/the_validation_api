@@ -57,7 +57,19 @@ export const validateDataField = (
         )
       }
 
-      resultantTargetFieldValue = data[field]
+      const dataFieldValue = data[field]
+
+      // ensure field is not missing
+      if (dataFieldValue === undefined) {
+        return createResponse(
+          res,
+          HttpStatusCode.StatusBadRequest,
+          createFieldMissingFromDataMessage(field),
+          ResponseStatus.error
+        )
+      }
+
+      resultantTargetFieldValue = dataFieldValue
     } else { // otherwise, data is an object
       // ensure field is not a number before split
       if (typeof field === number_t) {
