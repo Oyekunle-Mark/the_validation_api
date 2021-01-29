@@ -1,5 +1,5 @@
 export * from './apiResponse'
-export * from './missingFieldFromObjectMessage'
+export * from './generateResponseMessage'
 export * from './fieldTypes'
 export * from './condition'
 export * from './typeDefs'

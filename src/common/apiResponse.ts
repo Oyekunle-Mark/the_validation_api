@@ -3,11 +3,13 @@ import { Response } from 'express'
 interface IHttpStatusCode {
   StatusOk: number
   StatusBadRequest: number
+  StatusInternalServerError: number
 }
 
 export const HttpStatusCode: IHttpStatusCode = {
   StatusOk: 200,
   StatusBadRequest: 400,
+  StatusInternalServerError: 500,
 }
 
 export enum ResponseStatus {
@@ -23,10 +25,12 @@ interface IResponseMessage {
   DataCannotBeNumber: string
   InvalidJsonPayload: string
   InvalidConditionValue: string
+  RuleFieldCannotBeEmpty: string
+  ErrorOccurred: string
 }
 
 export const ResponseMessage: IResponseMessage = {
-  GetDetails: 'The Rule-Validation API',
+  GetDetails: 'The Rule-Validation API.',
   RuleRequired: 'rule is required.',
   DataRequired: 'data is required.',
   RuleShouldBeObject: 'rule should be an object.',
@@ -34,6 +38,8 @@ export const ResponseMessage: IResponseMessage = {
   InvalidJsonPayload: 'Invalid JSON payload passed.',
   InvalidConditionValue:
     'rule.condition should be one of eq, neq, gt, gte, or contains.',
+  RuleFieldCannotBeEmpty: 'rule.field cannot be an empty string.',
+  ErrorOccurred: 'An error occurred on the server.',
 }
 
 /**

@@ -1,7 +1,7 @@
 export enum FieldNames {
   rule = 'rule',
-  field = 'field',
-  condition = 'condition',
-  condition_value = 'condition_value',
+  field = 'rule.field',
+  condition = 'rule.condition',
+  condition_value = 'rule.condition_value',
   data = 'data',
 }

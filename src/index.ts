@@ -1,6 +1,6 @@
 import server from './server'
 
-const PORT = 7201
+const { PORT } = process.env
 
 function onListening() {
   console.log(`Listening on ${PORT}`)
