@@ -23,6 +23,7 @@ interface IResponseMessage {
   DataCannotBeNumber: string
   InvalidJsonPayload: string
   InvalidConditionValue: string
+  RuleFieldCannotBeEmpty: string
 }
 
 export const ResponseMessage: IResponseMessage = {
@@ -34,6 +35,7 @@ export const ResponseMessage: IResponseMessage = {
   InvalidJsonPayload: 'Invalid JSON payload passed.',
   InvalidConditionValue:
     'rule.condition should be one of eq, neq, gt, gte, or contains.',
+  RuleFieldCannotBeEmpty: 'rule.field cannot be an empty string.',
 }
 
 /**

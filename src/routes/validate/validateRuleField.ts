@@ -8,6 +8,7 @@ import {
   ResponseStatus,
   ValidConditions,
   object_t,
+  string_t,
 } from '../../common'
 
 export const validateRuleField = (
@@ -45,6 +46,16 @@ export const validateRuleField = (
       res,
       HttpStatusCode.StatusBadRequest,
       createMissingFromMessage(FieldNames.field, FieldNames.rule),
+      ResponseStatus.error
+    )
+  }
+
+  // rule.field cannot be an empty string
+  if (typeof field === string_t && !field.length) {
+    return createResponse(
+      res,
+      HttpStatusCode.StatusBadRequest,
+      ResponseMessage.RuleFieldCannotBeEmpty,
       ResponseStatus.error
     )
   }
