@@ -3,11 +3,13 @@ import { Response } from 'express'
 interface IHttpStatusCode {
   StatusOk: number
   StatusBadRequest: number
+  StatusInternalServerError: number
 }
 
 export const HttpStatusCode: IHttpStatusCode = {
   StatusOk: 200,
   StatusBadRequest: 400,
+  StatusInternalServerError: 500,
 }
 
 export enum ResponseStatus {
@@ -24,6 +26,7 @@ interface IResponseMessage {
   InvalidJsonPayload: string
   InvalidConditionValue: string
   RuleFieldCannotBeEmpty: string
+  ErrorOccurred: string
 }
 
 export const ResponseMessage: IResponseMessage = {
@@ -36,6 +39,7 @@ export const ResponseMessage: IResponseMessage = {
   InvalidConditionValue:
     'rule.condition should be one of eq, neq, gt, gte, or contains.',
   RuleFieldCannotBeEmpty: 'rule.field cannot be an empty string.',
+  ErrorOccurred: 'An error occurred on the server.',
 }
 
 /**
