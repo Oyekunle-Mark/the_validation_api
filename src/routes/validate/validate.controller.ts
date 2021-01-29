@@ -2,7 +2,8 @@ import { Request, Response } from 'express'
 import {
   ConditionType,
   createResponse,
-  HttpStatusCode, ResponseMessage,
+  HttpStatusCode,
+  ResponseMessage,
   ResponseStatus,
 } from '../../common'
 import { IValidationResult } from './validate.type'
@@ -33,7 +34,13 @@ export const validateController = (req: Request, res: Response): Response => {
         isValid = targetFieldValue != condition_value
         break
       case ConditionType.contains:
-        isValid = targetFieldValue.includes(condition_value)
+        // perform error checking for numeric types
+        try {
+          isValid = targetFieldValue.includes(condition_value)
+        } catch (e) {
+          isValid = false
+        }
+
         break
       default:
         isValid = false
@@ -47,7 +54,9 @@ export const validateController = (req: Request, res: Response): Response => {
       ? HttpStatusCode.StatusOk
       : HttpStatusCode.StatusBadRequest
 
-    const responseStatus = isValid ? ResponseStatus.success : ResponseStatus.error
+    const responseStatus = isValid
+      ? ResponseStatus.success
+      : ResponseStatus.error
 
     const validation: IValidationResult = {
       error: !isValid,
