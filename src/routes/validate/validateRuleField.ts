@@ -1,14 +1,14 @@
 import { NextFunction, Request, Response } from 'express'
 import {
-  createMissingFromMessage,
+  createFieldMissingFromRuleMessage,
   createResponse,
   FieldNames,
   HttpStatusCode,
+  object_t,
   ResponseMessage,
   ResponseStatus,
-  ValidConditions,
-  object_t,
   string_t,
+  ValidConditions,
 } from '../../common'
 
 export const validateRuleField = (
@@ -46,7 +46,7 @@ export const validateRuleField = (
       return createResponse(
         res,
         HttpStatusCode.StatusBadRequest,
-        createMissingFromMessage(FieldNames.field, FieldNames.rule),
+        createFieldMissingFromRuleMessage(FieldNames.field),
         ResponseStatus.error
       )
     }
@@ -66,7 +66,7 @@ export const validateRuleField = (
       return createResponse(
         res,
         HttpStatusCode.StatusBadRequest,
-        createMissingFromMessage(FieldNames.condition, FieldNames.rule),
+        createFieldMissingFromRuleMessage(FieldNames.condition),
         ResponseStatus.error
       )
     }
@@ -86,7 +86,7 @@ export const validateRuleField = (
       return createResponse(
         res,
         HttpStatusCode.StatusBadRequest,
-        createMissingFromMessage(FieldNames.condition_value, FieldNames.rule),
+        createFieldMissingFromRuleMessage(FieldNames.condition_value),
         ResponseStatus.error
       )
     }

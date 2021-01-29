@@ -1,6 +1,6 @@
 import { NextFunction, Request, Response } from 'express'
 import {
-  createMissingFromMessage,
+  createFieldMissingFromDataMessage,
   createResponse,
   FieldNames,
   HttpStatusCode,
@@ -52,7 +52,7 @@ export const validateDataField = (
         return createResponse(
           res,
           HttpStatusCode.StatusBadRequest,
-          createMissingFromMessage(field, FieldNames.data),
+          createFieldMissingFromDataMessage(field),
           ResponseStatus.error
         )
       }
@@ -64,7 +64,7 @@ export const validateDataField = (
         return createResponse(
           res,
           HttpStatusCode.StatusBadRequest,
-          createFieldShouldBeAStringMessage('rule.field'),
+          createFieldShouldBeAStringMessage(FieldNames.field),
           ResponseStatus.error
         )
       }
@@ -90,7 +90,7 @@ export const validateDataField = (
           return createResponse(
             res,
             HttpStatusCode.StatusBadRequest,
-            createMissingFromMessage(field, FieldNames.data),
+            createFieldMissingFromDataMessage(field),
             ResponseStatus.error
           )
         }
@@ -101,7 +101,7 @@ export const validateDataField = (
           return createResponse(
             res,
             HttpStatusCode.StatusBadRequest,
-            createMissingFromMessage(field, FieldNames.data),
+            createFieldMissingFromDataMessage(field),
             ResponseStatus.error
           )
         }
@@ -115,7 +115,7 @@ export const validateDataField = (
           return createResponse(
             res,
             HttpStatusCode.StatusBadRequest,
-            createMissingFromMessage(field, FieldNames.data),
+            createFieldMissingFromDataMessage(field),
             ResponseStatus.error
           )
         }

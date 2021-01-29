@@ -30,7 +30,7 @@ interface IResponseMessage {
 }
 
 export const ResponseMessage: IResponseMessage = {
-  GetDetails: 'The Rule-Validation API',
+  GetDetails: 'The Rule-Validation API.',
   RuleRequired: 'rule is required.',
   DataRequired: 'data is required.',
   RuleShouldBeObject: 'rule should be an object.',
