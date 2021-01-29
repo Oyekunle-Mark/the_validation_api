@@ -8,6 +8,7 @@ import {
   ResponseStatus,
   string_t,
   number_t,
+  createNestingTooDeepMessage,
 } from '../../common'
 
 export const validateDataField = (
@@ -63,7 +64,7 @@ export const validateDataField = (
       return createResponse(
         res,
         HttpStatusCode.StatusBadRequest,
-        createMissingFromMessage(field, FieldNames.data),
+        createNestingTooDeepMessage(field),
         ResponseStatus.error
       )
     }
